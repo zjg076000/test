@@ -34,14 +34,15 @@ uses
   UnOrderNumData in 'UnOrderNumData.pas' {FrmOrderNumData},
   UnOrderNumData_Add in 'UnOrderNumData_Add.pas' {FrmOrderNumData_Add},
   UnPurchaseTracking in 'UnPurchaseTracking.pas' {FrmPurchaseTracking},
-  UnSalerRight in 'UnSalerRight.pas' {FrmSalerRight},
+  UnOrderRight in 'UnOrderRight.pas' {FrmOrderRight},
   UnRightManage in 'UnRightManage.pas' {frmRightManager},
   UnProduceOrderTracking in 'UnProduceOrderTracking.pas' {FrmProduceOrderTracking},
   UnSalesOrderReport in 'UnSalesOrderReport.pas' {FrmSalesOrderReport},
   UnFtpServer in 'UnFtpServer.pas' {FrmFtpServer},
   uFtpServer in 'uFtpServer.pas',
   UnCommon in 'UnCommon.pas',
-  UnDept in 'UnDept.pas' {FrmDept};
+  UnDept in 'UnDept.pas' {FrmDept},
+  UnSalerRight in 'UnSalerRight.pas' {FrmSalerRight};
 
 {$R *.res}
 
@@ -90,6 +91,7 @@ begin
     RegisterClass(TfrmRightManager);
      RegisterClass(TFrmFtpServer);
         RegisterClass(TFrmDept);
+         RegisterClass(TFrmOrderRight);
   // frmlogin.Login() then
       Application.Run ;
  // else

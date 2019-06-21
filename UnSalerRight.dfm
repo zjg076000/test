@@ -3,8 +3,8 @@ object FrmSalerRight: TFrmSalerRight
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = #35774#32622#38144#21806#21592#26435#38480
-  ClientHeight = 373
-  ClientWidth = 247
+  ClientHeight = 458
+  ClientWidth = 305
   Color = clBtnFace
   Font.Charset = GB2312_CHARSET
   Font.Color = clWindowText
@@ -18,12 +18,13 @@ object FrmSalerRight: TFrmSalerRight
   object RzPanel1: TRzPanel
     Left = 0
     Top = 0
-    Width = 247
+    Width = 305
     Height = 57
     Align = alTop
     BorderOuter = fsNone
     TabOrder = 0
     VisualStyle = vsGradient
+    ExplicitWidth = 247
     object lbl: TLabel
       Left = 9
       Top = 12
@@ -51,7 +52,7 @@ object FrmSalerRight: TFrmSalerRight
     object btnLogin: TAdvGlowButton
       Left = 174
       Top = 6
-      Width = 67
+      Width = 75
       Height = 45
       Caption = #30331#38470
       Font.Charset = GB2312_CHARSET
@@ -142,8 +143,8 @@ object FrmSalerRight: TFrmSalerRight
   end
   object RzPanel2: TRzPanel
     Left = 0
-    Top = 340
-    Width = 247
+    Top = 425
+    Width = 305
     Height = 33
     Align = alBottom
     BorderOuter = fsNone
@@ -151,10 +152,12 @@ object FrmSalerRight: TFrmSalerRight
     GradientDirection = gdHorizontalBox
     TabOrder = 2
     VisualStyle = vsGradient
+    ExplicitTop = 340
+    ExplicitWidth = 247
     object btn: TAdvGlowButton
       Left = 0
       Top = 0
-      Width = 247
+      Width = 305
       Height = 33
       Align = alClient
       Caption = #35774#32622#26435#38480
@@ -188,13 +191,14 @@ object FrmSalerRight: TFrmSalerRight
       Appearance.ColorMirrorDisabled = 11974326
       Appearance.ColorMirrorDisabledTo = 15921906
       Enabled = False
+      ExplicitWidth = 247
     end
   end
   object GRD: TDBGridEh
     Left = 0
     Top = 57
-    Width = 247
-    Height = 283
+    Width = 305
+    Height = 368
     Align = alClient
     AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
     BorderStyle = bsNone
@@ -211,7 +215,6 @@ object FrmSalerRight: TFrmSalerRight
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
-    FooterRowCount = 1
     FooterParams.Color = clBtnFace
     FooterParams.FillStyle = cfstThemedEh
     FooterParams.HorzLines = True

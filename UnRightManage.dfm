@@ -1,18 +1,18 @@
 inherited frmRightManager: TfrmRightManager
   Caption = 'r'
-  ClientHeight = 463
-  ClientWidth = 1184
+  ClientHeight = 585
+  ClientWidth = 1429
   WindowState = wsMaximized
-  ExplicitWidth = 1200
-  ExplicitHeight = 501
+  ExplicitWidth = 1445
+  ExplicitHeight = 623
   PixelsPerInch = 96
   TextHeight = 12
   inherited RzPanel1: TRzPanel
-    Width = 1184
-    ExplicitWidth = 1184
+    Width = 1429
+    ExplicitWidth = 1429
     inherited RzToolbarButton1: TRzToolbarButton
       Tag = 1003
-      Left = 1121
+      Left = 1366
       ExplicitLeft = 703
     end
     object advsmthlbl1: TAdvSmoothLabel
@@ -49,7 +49,7 @@ inherited frmRightManager: TfrmRightManager
     Left = 0
     Top = 28
     Width = 396
-    Height = 435
+    Height = 557
     Align = alLeft
     BorderOuter = fsFlat
     BorderSides = [sdLeft, sdRight, sdBottom]
@@ -58,7 +58,7 @@ inherited frmRightManager: TfrmRightManager
       Left = 1
       Top = 281
       Width = 394
-      Height = 153
+      Height = 275
       Align = alClient
       BorderOuter = fsFlat
       BorderSides = []
@@ -106,14 +106,14 @@ inherited frmRightManager: TfrmRightManager
         Left = 0
         Top = 25
         Width = 194
-        Height = 128
+        Height = 250
         Align = alLeft
         BorderOuter = fsFlat
         BorderSides = [sdRight]
         TabOrder = 1
         object rzpnl1: TRzPanel
           Left = 0
-          Top = 103
+          Top = 225
           Width = 193
           Height = 25
           Align = alBottom
@@ -221,7 +221,7 @@ inherited frmRightManager: TfrmRightManager
           Left = 0
           Top = 0
           Width = 193
-          Height = 103
+          Height = 225
           Align = alClient
           AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
           BorderStyle = bsNone
@@ -290,14 +290,14 @@ inherited frmRightManager: TfrmRightManager
         Left = 194
         Top = 25
         Width = 200
-        Height = 128
+        Height = 250
         Align = alClient
         BorderOuter = fsFlat
         BorderSides = []
         TabOrder = 2
         object RzPanel17: TRzPanel
           Left = 0
-          Top = 103
+          Top = 225
           Width = 200
           Height = 25
           Align = alBottom
@@ -407,7 +407,7 @@ inherited frmRightManager: TfrmRightManager
           Left = 0
           Top = 0
           Width = 200
-          Height = 103
+          Height = 225
           Align = alClient
           AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
           BorderStyle = bsNone
@@ -629,7 +629,7 @@ inherited frmRightManager: TfrmRightManager
             15E190DFDBD83F760C6511423475420000000049454E44AE426082}
         end
       end
-      object Grd01: TDBGridEh
+      object DBGridEh6: TDBGridEh
         Left = 0
         Top = 25
         Width = 394
@@ -688,34 +688,30 @@ inherited frmRightManager: TfrmRightManager
             CellButtons = <>
             DynProps = <>
             EditButtons = <>
-            FieldName = 'UserCode'
+            FieldName = 'IsSelect'
             Footers = <>
-            Title.Caption = #29992#25143#32534#21495
-            Width = 71
+            Title.Caption = #36873#25321
+            Width = 46
           end
           item
-            Alignment = taLeftJustify
-            AlwaysShowEditButton = False
-            AutoDropDown = True
+            Alignment = taCenter
             CellButtons = <>
-            CellDataIsLink = True
-            DropDownBox.ColumnDefValues.AutoDropDown = True
-            DropDownBox.ColumnDefValues.DblClickNextVal = True
-            DropDownBox.ColumnDefValues.DropDownShowTitles = True
-            DropDownBox.ColumnDefValues.DropDownSizing = True
-            DropDownBox.ColumnDefValues.EditButtonDrawBackTime = edbtWhenHotEh
-            DropDownBox.ListSourceAutoFilterType = lsftContainsEh
-            DropDownSpecRow.Visible = True
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'UserCode'
+            Footers = <>
+            Title.Caption = #29992#25143#21517
+            Width = 87
+          end
+          item
+            Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'UserName'
             Footers = <>
-            MRUList.AutoAdd = False
-            Title.Alignment = taLeftJustify
-            Title.Caption = #29992#25143#21517
-            Width = 108
-            OnDropDownBoxApplyTextFilter = Grd01Columns1DropDownBoxApplyTextFilter
-            OnDropDownBoxGetCellParams = Grd01Columns1DropDownBoxGetCellParams
+            Title.Caption = #29992#25143#22995#21517
+            Width = 102
           end
           item
             CellButtons = <>
@@ -723,18 +719,8 @@ inherited frmRightManager: TfrmRightManager
             EditButtons = <>
             FieldName = 'PassWord'
             Footers = <>
-            Title.Alignment = taLeftJustify
-            Title.Caption = #23494#30721
-            Width = 89
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'IsSelect'
-            Footers = <>
-            Title.Caption = #36873#25321
-            Width = 60
+            Title.Caption = #29992#25143#23494#30721
+            Width = 74
           end>
         object TRowDetailPanelControlEh
         end
@@ -744,8 +730,8 @@ inherited frmRightManager: TfrmRightManager
   object RzPanel7: TRzPanel
     Left = 396
     Top = 28
-    Width = 344
-    Height = 435
+    Width = 581
+    Height = 557
     Align = alLeft
     BorderOuter = fsFlat
     BorderSides = [sdRight]
@@ -753,21 +739,23 @@ inherited frmRightManager: TfrmRightManager
     object RzPanel9: TRzPanel
       Left = 0
       Top = 0
-      Width = 343
+      Width = 580
       Height = 281
       Align = alTop
       BorderOuter = fsFlat
       BorderSides = [sdBottom]
       TabOrder = 0
+      ExplicitWidth = 343
       object RzPanel10: TRzPanel
         Left = 0
         Top = 0
-        Width = 343
+        Width = 580
         Height = 25
         Align = alTop
         BorderOuter = fsFlat
         BorderSides = [sdBottom]
         TabOrder = 0
+        ExplicitWidth = 343
         object lbl_01: TLabel
           Left = 28
           Top = 6
@@ -799,7 +787,7 @@ inherited frmRightManager: TfrmRightManager
       object DBGridEh2: TDBGridEh
         Left = 0
         Top = 25
-        Width = 343
+        Width = 580
         Height = 255
         Align = alClient
         AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
@@ -850,6 +838,7 @@ inherited frmRightManager: TfrmRightManager
         SumList.Active = True
         TabOrder = 1
         TitleParams.MultiTitle = True
+        OnCellClick = DBGridEh2CellClick
         Columns = <
           item
             CellButtons = <>
@@ -874,6 +863,22 @@ inherited frmRightManager: TfrmRightManager
             Title.Alignment = taLeftJustify
             Title.Caption = #31995#32479#21151#33021#21517#31216
             Width = 169
+          end
+          item
+            CellButtons = <>
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Caption = #21151#33021#26435#38480
+            Width = 124
+          end
+          item
+            CellButtons = <>
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Caption = #21151#33021#26435#38480#25551#36848
+            Width = 191
           end>
         object TRowDetailPanelControlEh
         end
@@ -882,16 +887,17 @@ inherited frmRightManager: TfrmRightManager
     object RzPanel8: TRzPanel
       Left = 0
       Top = 281
-      Width = 343
-      Height = 154
+      Width = 580
+      Height = 276
       Align = alClient
       BorderOuter = fsFlat
       BorderSides = [sdBottom]
       TabOrder = 1
+      ExplicitWidth = 343
       object RzPanel11: TRzPanel
         Left = 0
         Top = 0
-        Width = 343
+        Width = 580
         Height = 25
         Align = alTop
         BorderOuter = fsFlat
@@ -931,8 +937,8 @@ inherited frmRightManager: TfrmRightManager
       object DBGridEh3: TDBGridEh
         Left = 0
         Top = 25
-        Width = 343
-        Height = 128
+        Width = 580
+        Height = 250
         Align = alClient
         AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
         BorderStyle = bsNone
@@ -1003,6 +1009,22 @@ inherited frmRightManager: TfrmRightManager
             ReadOnly = True
             Title.Caption = #31995#32479#21151#33021#21517#31216
             Width = 177
+          end
+          item
+            CellButtons = <>
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Caption = #21151#33021#26435#38480
+            Width = 122
+          end
+          item
+            CellButtons = <>
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Caption = #21151#33021#26435#38480#25551#36848
+            Width = 195
           end>
         object TRowDetailPanelControlEh
         end
@@ -1010,19 +1032,19 @@ inherited frmRightManager: TfrmRightManager
     end
   end
   object RzPanel12: TRzPanel
-    Left = 740
+    Left = 977
     Top = 28
-    Width = 83
-    Height = 435
+    Width = 64
+    Height = 557
     Align = alLeft
     BorderOuter = fsFlat
-    BorderSides = [sdRight]
     TabOrder = 3
+    ExplicitLeft = 740
     object btnAddRight: TAdvGlowButton
       Tag = 3002
       Left = 1
       Top = 32
-      Width = 77
+      Width = 54
       Height = 49
       Caption = #28155#21152#25480#26435
       Font.Charset = GB2312_CHARSET
@@ -1086,7 +1108,7 @@ inherited frmRightManager: TfrmRightManager
       Tag = 3002
       Left = 1
       Top = 96
-      Width = 77
+      Width = 56
       Height = 57
       Caption = #21462#28040#25480#26435
       Font.Charset = GB2312_CHARSET
@@ -1149,7 +1171,7 @@ inherited frmRightManager: TfrmRightManager
       Tag = 3002
       Left = 3
       Top = 328
-      Width = 77
+      Width = 54
       Height = 49
       Caption = #28155#21152#25480#26435
       Font.Charset = GB2312_CHARSET
@@ -1213,7 +1235,7 @@ inherited frmRightManager: TfrmRightManager
       Tag = 3002
       Left = 3
       Top = 392
-      Width = 77
+      Width = 54
       Height = 57
       Caption = #21462#28040#25480#26435
       Font.Charset = GB2312_CHARSET
@@ -1273,59 +1295,21 @@ inherited frmRightManager: TfrmRightManager
       Layout = blGlyphTop
     end
   end
-  object RzPanel13: TRzPanel
-    Left = 823
+  object RzPanel14: TRzPanel
+    Left = 1041
     Top = 28
-    Width = 361
-    Height = 435
+    Width = 388
+    Height = 557
     Align = alClient
-    BorderOuter = fsFlat
-    BorderSides = [sdRight]
+    BorderOuter = fsNone
     TabOrder = 4
-    object RzPanel14: TRzPanel
-      Left = 0
-      Top = 0
-      Width = 360
-      Height = 25
-      Align = alTop
-      BorderOuter = fsFlat
-      BorderSides = [sdBottom]
-      TabOrder = 0
-      object Label5: TLabel
-        Left = 31
-        Top = 6
-        Width = 48
-        Height = 12
-        Caption = #25152#26377#27169#22359
-      end
-      object Image5: TImage
-        Left = 10
-        Top = 4
-        Width = 17
-        Height = 17
-        Picture.Data = {
-          0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000010
-          0000001008060000001FF3FF610000018C49444154384F8D93414EC2501086FF
-          691AC3CEC2096451B6EA09C41BE8DA0D2C0113CA0984130089C0926E3C802710
-          4F206EA9099E00EA0E4DD3DF4C4B492934FA362F7933EF7FFFFB664690B34A23
-          AF4BA00DA12F22EEAA61F78EA54AF6D01A7FDC08C23E2045928EC6456400704D
-          91BADFB067E93B3B016BB23C13065301AA207AE18F39F03B655F93ADFED2324E
-          0207820702338A59F71BE5CF483C4A182D6A86C894C4330DD3498207EEE2475C
-          01AE42B2EEB72AAEE8CB0683657290C7247D9E3C188A59166BE2550DE265D5B4
-          A5385ECC494CFD5665784CC81A7B8E80ED75B3522E8D3D8682EB3D01558E81E1
-          8DDFE6ED8EC1960F804B05ABD68F0A443CB6FF0471AED42350E41482778A594B
-          F8E40A24D6E33EA052D73A76FCA6ADCE76EB4F01CD2C3E2E9E745FDF57EEB24C
-          FE25A02EF4E2AA65477B8E83FC32E609EC9571AF91325D96154877EBAE91125B
-          097DED3208BAE1C61CA2105C44F18D39370A411B840ED86BBA1A87C334F1AA12
-          C205704A91789848ADC0170DD47287E900523CCEB5EDC0B8C7406AEC1715AB06
-          F8F824B5A60000000049454E44AE426082}
-      end
-    end
+    ExplicitLeft = 804
+    ExplicitWidth = 625
     object GRD1: TDBGridEh
       Left = 0
       Top = 25
-      Width = 360
-      Height = 410
+      Width = 388
+      Height = 532
       Align = alClient
       AllowedSelections = [gstRecordBookmarks, gstRectangle, gstAll]
       BorderStyle = bsNone
@@ -1373,7 +1357,7 @@ inherited frmRightManager: TfrmRightManager
       STFilter.Location = stflInTitleFilterEh
       STFilter.Visible = True
       SumList.Active = True
-      TabOrder = 1
+      TabOrder = 0
       TitleParams.MultiTitle = True
       Columns = <
         item
@@ -1412,78 +1396,46 @@ inherited frmRightManager: TfrmRightManager
       object TRowDetailPanelControlEh
       end
     end
-  end
-  object mteUser: TMemTableEh
-    Active = True
-    AggregatesActive = True
-    Params = <>
-    DataDriver = dsdUser
-    AfterPost = mteUserAfterPost
-    AfterScroll = mteUserAfterScroll
-    Left = 272
-    Top = 152
-  end
-  object dsoUser: TDataSource
-    DataSet = mteUser
-    Left = 208
-    Top = 145
-  end
-  object dsdUser: TDataSetDriverEh
-    ProviderDataSet = adtUser
-    Left = 144
-    Top = 137
-  end
-  object adtUser: TADODataSet
-    Active = True
-    Connection = dm_DaTa.adoconn
-    CursorType = ctStatic
-    AfterPost = adtUserAfterPost
-    OnNewRecord = adtUserNewRecord
-    CommandText = 'select * from  Sys_User'
-    DataSource = dsoUser
-    Parameters = <>
-    Left = 88
-    Top = 137
-  end
-  object adtRole: TADODataSet
-    Active = True
-    Connection = dm_DaTa.adoconn
-    CursorType = ctStatic
-    AfterScroll = adtRoleAfterScroll
-    CommandText = 'select * from  Sys_Role'
-    DataSource = dsoRole
-    Parameters = <>
-    Left = 16
-    Top = 377
-    object adtRoleId: TAutoIncField
-      FieldName = 'Id'
-      ReadOnly = True
+    object RzPanel13: TRzPanel
+      Left = 0
+      Top = 0
+      Width = 388
+      Height = 25
+      Align = alTop
+      BorderOuter = fsFlat
+      BorderSides = [sdBottom]
+      TabOrder = 1
+      ExplicitWidth = 625
+      object Label2: TLabel
+        Left = 28
+        Top = 6
+        Width = 114
+        Height = 12
+        Caption = #26435#38480#31649#29702'---'#29992#25143#26435#38480
+      end
+      object Image2: TImage
+        Left = 6
+        Top = 3
+        Width = 18
+        Height = 18
+        Picture.Data = {
+          0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000010
+          0000001008060000001FF3FF610000013949444154384FBD923D6EC2401085DF
+          588ED22E9CC048983A3941C8090237A0C52E8013C49C00288CCB2827487203DF
+          20A931123E016C8B64F9450B3202C721AE32CD16F3E6DBF979822BA1661B65D2
+          7AD2D2BFC9A42AA196C958C091401C93279892986BBFB328EB7F009AE17A0EE1
+          88C407C1775320909E089E40596CFDF6F81C720150E1EACE12F9AC1236C32480
+          E03927EFB5DFF92A20178093686F37CA739B7D58B7D90EC474EBBB412540451B
+          07C81C3D74E3CADD444917397565078D65120BF070ED2A458E40CCBDDD375D1E
+          465051D21522D8796EB70EC07C4641603ABD0A50E16A00B1A8BDF6EB39B816C0
+          78C10266A6300726DA73E705A42660DDB3C0B72340FADA6B1F3C61A216A0109A
+          B7BC9BFF031C7D01E8612BFD63891B47F22C160B2F75CE487240B97934E09395
+          0B17D60100765A74F50D9B7FCA1183003F090000000049454E44AE426082}
+        Stretch = True
+      end
     end
-    object adtRoleRoleName: TWideStringField
-      FieldName = 'RoleName'
-      Size = 50
-    end
-  end
-  object dsdRole: TDataSetDriverEh
-    ProviderDataSet = adtRole
-    Left = 56
-    Top = 377
-  end
-  object dsoRole: TDataSource
-    DataSet = mteRole
-    Left = 104
-    Top = 377
-  end
-  object mteRole: TMemTableEh
-    Active = True
-    Params = <>
-    DataDriver = dsdRole
-    AfterScroll = mteRoleAfterScroll
-    Left = 136
-    Top = 384
   end
   object AdtFunction: TADODataSet
-    Active = True
     Connection = dm_DaTa.adoconn
     CursorType = ctStatic
     CommandText = 
@@ -1491,8 +1443,8 @@ inherited frmRightManager: TfrmRightManager
       'm_fl  b where a.flid=b.id'
     DataSource = dsoFunction
     Parameters = <>
-    Left = 856
-    Top = 153
+    Left = 809
+    Top = 65529
     object AdtFunctionmkname: TStringField
       FieldName = 'mkname'
       Size = 50
@@ -1507,8 +1459,8 @@ inherited frmRightManager: TfrmRightManager
   end
   object dsdFunction: TDataSetDriverEh
     ProviderDataSet = AdtFunction
-    Left = 936
-    Top = 145
+    Left = 896
+    Top = 105
   end
   object dsoFunction: TDataSource
     DataSet = mteFunction
@@ -1516,43 +1468,20 @@ inherited frmRightManager: TfrmRightManager
     Top = 209
   end
   object mteFunction: TMemTableEh
-    Active = True
     Params = <>
     DataDriver = dsdFunction
     Left = 1079
     Top = 172
   end
-  object adtUserRight: TADODataSet
-    Active = True
-    Connection = dm_DaTa.adoconn
-    CursorType = ctStatic
-    CommandText = 'select *  from  Sys_UserFormRight'
-    Parameters = <>
-    Left = 552
-    Top = 1
-    object adtUserRightId: TAutoIncField
-      FieldName = 'Id'
-      ReadOnly = True
-    end
-    object adtUserRightUserId: TIntegerField
-      FieldName = 'UserId'
-    end
-    object adtUserRightFormId: TIntegerField
-      FieldName = 'FormId'
-    end
-    object adtUserRightIsSelect: TBooleanField
-      FieldName = 'IsSelect'
-    end
-  end
   object dsd_UserRight: TDataSetDriverEh
     ProviderDataSet = adtUserRight
-    Left = 552
-    Top = 113
+    Left = 496
+    Top = 145
   end
   object dso_UserRight: TDataSource
     DataSet = mte_UserRight
-    Left = 560
-    Top = 57
+    Left = 584
+    Top = 121
   end
   object adtFormFunction: TADODataSet
     Active = True
@@ -1561,45 +1490,13 @@ inherited frmRightManager: TfrmRightManager
     CommandText = 'select    *    from sys_form_mk'
     Parameters = <>
     Left = 668
-    Top = 36
+    Top = 76
   end
   object Qry: TADOQuery
     Connection = dm_DaTa.adoconn
     Parameters = <>
     Left = 700
     Top = 188
-  end
-  object mte_UserRight: TMemTableEh
-    Active = True
-    DetailFields = 'UserId'
-    MasterFields = 'Id'
-    MasterSource = dsoUser
-    Params = <>
-    DataDriver = dsd_UserRight
-    Left = 556
-    Top = 172
-    object mte_UserRightId: TAutoIncField
-      FieldName = 'Id'
-    end
-    object mte_UserRightUserId: TIntegerField
-      FieldName = 'UserId'
-    end
-    object mte_UserRightFormId: TIntegerField
-      FieldName = 'FormId'
-    end
-    object mte_UserRightFormName: TStringField
-      FieldKind = fkLookup
-      FieldName = 'FormName'
-      LookupDataSet = adtFormFunction
-      LookupKeyFields = 'id'
-      LookupResultField = 'mkname'
-      KeyFields = 'FormId'
-      Size = 80
-      Lookup = True
-    end
-    object mte_UserRightIsSelect: TBooleanField
-      FieldName = 'IsSelect'
-    end
   end
   object adtRoleUser: TADODataSet
     Active = True
@@ -1631,37 +1528,6 @@ inherited frmRightManager: TfrmRightManager
     Left = 312
     Top = 321
   end
-  object Adt_UserLook: TADODataSet
-    Active = True
-    Connection = dm_DaTa.adoconn
-    CursorType = ctStatic
-    AfterScroll = adtRoleAfterScroll
-    CommandText = 'select *   from Sys_User'
-    DataSource = dsoRoleUser
-    Parameters = <>
-    Left = 176
-    Top = 209
-    object Adt_UserLookId: TAutoIncField
-      FieldName = 'Id'
-      ReadOnly = True
-    end
-    object Adt_UserLookPersonId: TIntegerField
-      FieldName = 'PersonId'
-    end
-    object Adt_UserLookUserCode: TWideStringField
-      FieldName = 'UserCode'
-    end
-    object Adt_UserLookUserName: TWideStringField
-      FieldName = 'UserName'
-    end
-    object Adt_UserLookPassWord: TWideStringField
-      FieldName = 'PassWord'
-      Size = 32
-    end
-    object Adt_UserLookIsSelect: TBooleanField
-      FieldName = 'IsSelect'
-    end
-  end
   object mteRoleUser: TMemTableEh
     Active = True
     DetailFields = 'RoleId'
@@ -1680,10 +1546,10 @@ inherited frmRightManager: TfrmRightManager
     object mteRoleUserRoleId: TIntegerField
       FieldName = 'RoleId'
     end
-    object mteRoleUserUserName: TStringField
+    object TStringField
       FieldKind = fkLookup
       FieldName = 'UserName'
-      LookupDataSet = Adt_UserLook
+      LookupDataSet = adtUserLookUp
       LookupKeyFields = 'Id'
       LookupResultField = 'UserName'
       KeyFields = 'UserId'
@@ -1755,17 +1621,265 @@ inherited frmRightManager: TfrmRightManager
       ReadOnly = True
     end
   end
-  object Adt_Person: TADODataSet
+  object mteUser: TMemTableEh
+    Active = True
+    Params = <>
+    DataDriver = dsdUser
+    AfterScroll = mteUserAfterScroll
+    Left = 88
+    Top = 192
+  end
+  object AdtUser: TADODataSet
+    Active = True
     Connection = dm_DaTa.adoconn
     CursorType = ctStatic
-    CommandText = 'select  *  from  Hrm_Person  where  IsStatus='#39#22312#32844#39
+    CommandText = 'select *  from   Sys_User'
     Parameters = <>
-    Left = 249
-    Top = 28
+    Left = 32
+    Top = 168
   end
-  object dso_Person: TDataSource
-    DataSet = Adt_Person
-    Left = 217
-    Top = 28
+  object dsoUser: TDataSource
+    DataSet = AdtUser
+    Left = 160
+    Top = 104
+  end
+  object dsdUser: TDataSetDriverEh
+    ProviderDataSet = AdtUser
+    Left = 200
+    Top = 113
+  end
+  object adtUserLookUp: TADODataSet
+    Active = True
+    Connection = dm_DaTa.adoconn
+    CursorType = ctStatic
+    CommandText = 'select *  from   Sys_User'
+    Parameters = <>
+    Left = 256
+    Top = 424
+  end
+  object mte_UserRight: TMemTableEh
+    Active = True
+    DetailFields = 'UserId'
+    MasterFields = 'Id'
+    MasterSource = dsoUser
+    Params = <>
+    DataDriver = dsd_UserRight
+    AfterScroll = mteUserAfterScroll
+    Left = 568
+    Top = 168
+    object mte_UserRightId: TAutoIncField
+      FieldName = 'Id'
+    end
+    object mte_UserRightUserId: TIntegerField
+      FieldName = 'UserId'
+    end
+    object mte_UserRightFormId: TIntegerField
+      FieldName = 'FormId'
+    end
+    object mte_UserRightIsSelect: TBooleanField
+      FieldName = 'IsSelect'
+    end
+    object mte_UserRightFormName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'FormName'
+      LookupDataSet = adtFormFunction
+      LookupKeyFields = 'id'
+      LookupResultField = 'mkname'
+      KeyFields = 'FormId'
+      OnChange = mte_UserRightFormNameChange
+      Lookup = True
+    end
+  end
+  object adtUserRight: TADODataSet
+    Active = True
+    Connection = dm_DaTa.adoconn
+    CursorType = ctStatic
+    CommandText = 'select *  from  Sys_UserFormRight'
+    Parameters = <>
+    Left = 424
+    Top = 152
+    object adtUserRightId: TAutoIncField
+      FieldName = 'Id'
+      ReadOnly = True
+    end
+    object adtUserRightUserId: TIntegerField
+      FieldName = 'UserId'
+    end
+    object adtUserRightFormId: TIntegerField
+      FieldName = 'FormId'
+    end
+    object adtUserRightIsSelect: TBooleanField
+      FieldName = 'IsSelect'
+    end
+  end
+  object adtRole: TADODataSet
+    Active = True
+    Connection = dm_DaTa.adoconn
+    CursorType = ctStatic
+    CommandText = 'select *  from   Sys_Role'
+    Parameters = <>
+    Left = 8
+    Top = 392
+  end
+  object mteRole: TMemTableEh
+    Active = True
+    Params = <>
+    DataDriver = dsdRole
+    AfterScroll = mteRoleAfterScroll
+    Left = 64
+    Top = 416
+  end
+  object dsoRole: TDataSource
+    DataSet = adtRole
+    Left = 120
+    Top = 384
+  end
+  object dsdRole: TDataSetDriverEh
+    ProviderDataSet = adtRole
+    Left = 160
+    Top = 393
+  end
+  object ImageList1: TImageList
+    Left = 1112
+    Top = 8
+    Bitmap = {
+      494C010102000D00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000DB971040DB9611C0DB9611C0DB971040000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000DB961070DB9611F0DB9611F0DB951280000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000DF8F1010DA9612A0DB9612FFDA95129FDA95129FDB9612FFDA9612A0DF8F
+      1010000000000000000000000000000000000000000000000000000000000000
+      0000DA951030DA9611D0DB9612FFDB9511EFDB9511EFDB9612FFDA9611D0DA95
+      1030000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000DF8F
+      1010DA9611D0DA9511CFDA9510300000000000000000DA951030DA9511CFDA96
+      11D0DF8F10100000000000000000000000000000000000000000DF8F1010DC95
+      1290DB9612FFDB9612FFDB9612FFDB971040DC961050DB9612FFDB9612FFDB96
+      12FFDC951290DF8F101000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000DB96
+      11C0DA9511CFDF8F1010DC961050DB9511E00000000000000000DF8F1010DA95
+      11CFDB9611C000000000000000000000000000000000DA951030DB9611F0DB96
+      12FFDB9612FFDB9612FFDB9612FFDB971040DB971040DB9612FFDB9612FFDB96
+      12FFDB9612FFDB9511E0DA951030000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000DA951060DB95
+      11EFDF8F1010DA951060DB9612FFDB9612FF000000000000000000000000DF97
+      1020DB9511EFDA951060000000000000000000000000DB9511E0DB9612FFDB96
+      12FFDB9612FFDB9612FFDB9612FFDB971040DA951030DB9611BFDB9511EFDB96
+      12FFDB9612FFDB9612FFDA9611D0000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000DB9511E0DB96
+      1070DB971040DB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      0000DB951280DA9611D0000000000000000000000000DB9612FFDB9612FFDB96
+      12FFDB9612FFDB9612FFDB9612FFDB9710400000000000000000DB951280DB96
+      12FFDB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DA951030DB9612FFDF8F
+      1010DB9611C0DB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      0000DF8F1010DB9612FFDF9710200000000000000000DB9612FFDB9612FFDB96
+      12FFDB9612FFDB9612FFDB9612FFDB971040DA951030DB9611C0DB9611F0DB96
+      12FFDB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DA9511CF0000
+      0000DB9612FFDB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      000000000000DA9611D0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDB9612FFDB9612FFDB9611BFDF971020DB971040DB9612FFDB9612FFDB96
+      12FFDB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DB9611C00000
+      0000DB9612FFDB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      000000000000DB9611C0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDB9612FFDB96128F0000000000000000DA951060DB9612FFDA9511CFDB96
+      12FFDB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DB9611C00000
+      0000DB9612FFDB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      000000000000DB9611C0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDA9511CF00000000DA951030DB9511E0DB9612FFDC95129000000000DB95
+      11E0DB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DB9611C00000
+      0000DB9612FFDB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      000000000000DB9611C0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDC95129000000000DB9611C0DB9612FFDB9612FFDB9611C000000000DB96
+      11C0DB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DB9611C00000
+      0000DB9611F0DB9612FFDB9612FFDB9612FF0000000000000000000000000000
+      000000000000DB9611C0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDB9511B000000000DA9612A0DB9612FFDB9612FFDA9612A000000000DA96
+      11D0DB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DB971040DA9611D0DF8F
+      101000000000DA951060DB9611AFDB9612FF0000000000000000000000000000
+      0000DF8F1010DA9611D0DB9710400000000000000000DB9612FFDB9612FFDB96
+      12FFDB9611F0DF971020DF8F1010DA95106FDA95106FDF8F1010DB971040DB96
+      12FFDB9612FFDB9612FFDB9612FF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DA951030DB9511EFDB96
+      11F0DA9612A0DC96105000000000DF9710200000000000000000DC961050DA96
+      12A0DB9611F0DB9511EFDA9510300000000000000000DB9511B0DB9612FFDB96
+      12FFDB9612FFDA9611D0DA9510300000000000000000DB971040DB9611F0DB96
+      12FFDB9612FFDB9612FFDB9611AF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000DA95
+      1060DB9611AFDB9612FFDB9511E0DC951290DC951290DB9511E0DB9612FFDB96
+      11AFDC96105F0000000000000000000000000000000000000000DB961070DA95
+      11CFDB9612FFDB9612FFDB9612FFDB9511E0DB9611F0DB9612FFDB9612FFDB96
+      12FFDA9511CFDA95106F00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000DF8F1010DA95106FDA9511CFDA9511CFDA95106FDF8F10100000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000DF971020DC96105FDA95129FDB9511EFDB9511EFDA95129FDC96105FDF8F
+      1010000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00FC3FFC3F00000000F00FF00F00000000
+      E187C00300000000E0C7800100000000C0E3800100000000C0F380C100000000
+      80F180010000000090F980010000000090F983010000000090F9842100000000
+      90F984210000000090F984210000000088F180010000000082C1818100000000
+      E007C00300000000F81FF00F0000000000000000000000000000000000000000
+      000000000000}
   end
 end

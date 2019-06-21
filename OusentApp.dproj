@@ -209,8 +209,8 @@
             <Form>FrmPurchaseTracking</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnSalerRight.pas">
-            <Form>FrmSalerRight</Form>
+        <DCCReference Include="UnOrderRight.pas">
+            <Form>FrmOrderRight</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UnRightManage.pas">
@@ -233,6 +233,10 @@
         <DCCReference Include="UnCommon.pas"/>
         <DCCReference Include="UnDept.pas">
             <Form>FrmDept</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnSalerRight.pas">
+            <Form>FrmSalerRight</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

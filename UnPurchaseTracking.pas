@@ -108,6 +108,8 @@ type
     Switch_01: TToggleSwitch;
     btn_OrderState: TAdvGlowButton;
     chkUpdate: TCheckBox;
+    btn_UpdataData: TAdvGlowButton;
+    RzToolbarButton4: TRzToolbarButton;
     procedure FormCreate(Sender: TObject);
     procedure btn_OrderNum_LocateClick(Sender: TObject);
     procedure GRDGetCellParams(Sender: TObject; Column: TColumnEh; AFont: TFont;
@@ -125,6 +127,7 @@ type
     procedure btn_MonthClick(Sender: TObject);
     procedure chk_selectClick(Sender: TObject);
     procedure btn_OrderStateClick(Sender: TObject);
+    procedure btn_UpdataDataClick(Sender: TObject);
   private
     str_datebegin,str_dateend:string;
      adoconn:TADOConnection;
@@ -320,6 +323,21 @@ begin
   dm_data.DbGridEhToExcel(Grd);
 end;
 
+procedure TFrmPurchaseTracking.btn_UpdataDataClick(Sender: TObject);
+begin
+
+   OrderNumInput;
+  UpdateInData;
+
+//  UpdateOutData;
+
+  UpdateReturnGoodData;
+  UpdateOrderState;
+  Proc_LocateData;
+
+
+end;
+
 procedure TFrmPurchaseTracking.chkUpdateClick(Sender: TObject);
 begin
   //inherited;
@@ -336,7 +354,9 @@ end;
 
 procedure TFrmPurchaseTracking.FormCreate(Sender: TObject);
 begin
-  OrderNumInput;
+
+
+
 
  dm_DaTa.RestoreGridEhStyle(GRD,self.Caption);
 
@@ -344,12 +364,15 @@ begin
   sped_month.Value:=VarMonth;
   datebegin.Date:=IncMonth(now,VarMonth);
   dateend.Date:=now;
+
+
+ { OrderNumInput;
   UpdateInData;
 
 //  UpdateOutData;
 
   UpdateReturnGoodData;
-  UpdateOrderState;
+  UpdateOrderState;    }
   Proc_LocateData;
 
 
@@ -386,6 +409,8 @@ begin
    　AFont.color := clRed;
   if mte.FieldByName('OrderState').AsString = '未交货' then
    　AFont.color := clBlack;
+  if mte.FieldByName('OrderState').AsString = '结束交货' then
+   　AFont.color := clFuchsia;
   if mte.FieldByName('OrderState').AsString = '部分交货' then
    begin
    　AFont.color :=clWebBlue;
@@ -409,26 +434,22 @@ end;
 
 procedure TFrmPurchaseTracking.OrderNumInput;
 var
-  MaxOrderNum,sql:string;
+  sql,CREATE_DATE,Auditing:string;
   OrderType,OrderDate,OrderNum,Supplier,SupplierName,ProductType,OrderNumNote,Currency,Payment,Buyer,
   Amount,ShippedNum,DeliveryDate,EstimateDate,Note,Specifications,Price,AmountMoney,OrderState:string;
   ReceivedNum,ReturnedNum:string;
 
 begin
-   psql:='select max(OrderNum) ordernum from  PD_PurchaseTracking ';
+   psql:='select max(CREATE_DATE) CREATE_DATE  from  PD_PurchaseTracking ';
 
    dm_DaTa.QuseryData(qry,psql);
-   //查询近30天已经审核的的订单数据
+   CREATE_DATE:=qry.fieldbyname('CREATE_DATE').asstring;
+   //查询近的的订单数据
    psql:='select a.TC001,a.TC002,a.TC003,a.TC004,a.TC005,a.TC008,a.TC009,a.TC011,'
-        +'b.TD001,b.TD005,b.TD006,b.TD008,b.TD010,b.TD011,b.TD012,c.MA002 '
-        +' from  (PURTC a   INNER JOIN  PURTD b  ON a.TC002=b.TD002 and a.TC001=b.TD001 '
-        +' AND a.TC014=''Y'')  INNER JOIN PURMA c on a.TC004=c.MA001 ';
-        // AND  a.TC003>CONVERT(varchar(100), GETDATE()-30, 112) ';
-      MaxOrderNum:=qry.FieldByName('ordernum').AsString;
-   if MaxOrderNum='' then
-       psql:=psql
-   else
-      psql:=psql+' AND  a.TC002>'''+MaxOrderNum+'''';
+        +'b.TD001,b.TD005,b.TD006,b.TD008,b.TD010,b.TD011,b.TD012,b.TD018,b.CREATE_DATE,c.MA002 '
+        +' from  PURTC a   inner  JOIN PURMA c on a.TC004=c.MA001  '
+        +'  Right JOIN  PURTD b  ON a.TC002=b.TD002 and a.TC001=b.TD001 '
+        +' where   b.CREATE_DATE>'''+CREATE_DATE+'''  order by  b.CREATE_DATE  ';
 
     dm_DaTa.QuseryData(qry_erp,Psql);
     while not qry_erp.Eof  do
@@ -454,27 +475,15 @@ begin
      AmountMoney:=FloatToStr(qry_erp.FieldByName('TD011').AsFloat); //金额
 
      DeliveryDate:=qry_erp.FieldByName('TD012').AsString; //订单要求发货日期
-
-
-   //  EstimateDate:=qry_erp.FieldByName('TD013').AsString; //预计发货日期
-   //  Note:=qry_erp.FieldByName('TD020').AsString;        //产品备注
-
-//ShippedNum:=qry_erp.FieldByName('TD009').AsString;//交货数量
-
-   //  SaleMan:=qry_erp.FieldByName('TC006').AsString;       //销售人员
-
-    // OrderNumNote:=qry_erp.FieldByName('TC052').AsString;   //订单备注
-   //  OrderState:='未发货';
-    // if  StrToInt(ShippedNum) =strtoint(Amount) then  OrderState:='已发货';
-    // if  (StrToInt(ShippedNum) <StrToInt(Amount)) and (StrToInt(ShippedNum)>0) then  OrderState:='部分发货';
-
+     CREATE_DATE:=qry_erp.FieldByName('CREATE_DATE').AsString; //创建时间
+     Auditing:=qry_erp.FieldByName('TD018').AsString; //审核码
 
      //生成插入SQL语句
      sql:=sql+' insert into PD_PurchaseTracking(OrderType,OrderDate,OrderNum,Supplier,Currency,Buyer,OrderNumNote,'
-          +'ProductType,Specifications,Amount,Price,AmountMoney,DeliveryDate,SupplierName,ReceivedNum,ReturnedNum) '
+          +'ProductType,Specifications,Amount,Price,AmountMoney,DeliveryDate,SupplierName,ReceivedNum,ReturnedNum,CREATE_DATE,Auditing) '
           +'  values('''+OrderType+''','''+OrderDate+''','''+OrderNum+''','''+Supplier+''','''+Currency+''','
           +''''+Buyer+''','''+OrderNumNote+''','''+ProductType+''','''+Specifications+''','+Amount+','+Price+','+AmountMoney+','
-          +''''+DeliveryDate+''','''+SupplierName+''',0,0)';
+          +''''+DeliveryDate+''','''+SupplierName+''',0,0,'''+CREATE_DATE+''','''+Auditing+''')';
 
      qry_erp.Next;
 
@@ -589,6 +598,7 @@ begin
 procedure TFrmPurchaseTracking.UpdateOrderState;
 var
  sql,OrderState,id:string;
+ OrderType,OrderNum, ProductType:string;
  IsDelay,DayDelay,EstimateDate:string;
 begin
      OrderState:='未交货';
@@ -598,6 +608,9 @@ begin
      while not qry.Eof do
      begin
        id:=qry.FieldByName('Id').asstring;
+       OrderType:=qry.FieldByName('OrderType').asstring;
+       OrderNum:=qry.FieldByName('OrderNum').asstring;
+       ProductType:=qry.FieldByName('ProductType').asstring;
        if qry.FieldByName('Amount').AsFloat=qry.FieldByName('ReceivedNum').AsFloat then
          OrderState:='已交清';
         if (qry.FieldByName('Amount').AsFloat>qry.FieldByName('ReceivedNum').AsFloat) and
@@ -606,6 +619,21 @@ begin
         if qry.FieldByName('ReceivedNum').AsFloat<=0 then
              OrderState:='未交货';
          EstimateDate:=qry.FieldByName('EstimateDate').AsString;
+
+
+           {---------发货了一部分 ，手动结束交货的情况- begin-----------}
+
+           psql:='select  * from   PURTD  where  TD001='''+OrderType+''' And  TD002='''+OrderNum+'''  '
+            +' and TD005='''+ProductType+''' and  TD016=''y'' ';
+          dm_Data.QuseryData(qry_erp, psql);
+          if  qry_erp.RecordCount>0 then
+           begin
+              OrderState:='结束交货';
+           end;
+           {---------发货了一部分 ，手动结束发货的情况- End-----------}
+
+
+
 
           IsDelay:='0' ;
           DayDelay:='0';
@@ -629,6 +657,15 @@ begin
         end;
 
 
+
+
+     //查询Erp中手工结束的订单 结束订单状态
+      //  psql:='select * from  PURTD where
+
+
+
+
+
        sql:=sql +' update PD_PurchaseTracking set OrderState='''+OrderState+''','
             +'IsDelay='+IsDelay+','+'OffsetDay='+DayDelay +' where Id='+id ;
         qry.Next;
@@ -637,11 +674,7 @@ begin
 
  if sql>'' then
  begin
-  {dm_Data.adoconn.BeginTrans;
-  dm_Data.ADOCommand.CommandText:=sql;
-//  showmessage(SqlStr);
-  dm_Data.ADOCommand.Execute();
-  dm_Data.adoconn.CommitTrans;    }
+
    Proc_ExecuteSql(sql);
   end;
 
@@ -714,12 +747,7 @@ begin
     end;
  if sql>'' then
  begin
- { dm_Data.adoconn.BeginTrans;
-  dm_Data.ADOCommand.CommandText:=sql;
-//  showmessage(SqlStr);
-  dm_Data.ADOCommand.Execute();
-  dm_Data.adoconn.CommitTrans;    }
-   Proc_ExecuteSql(sql);
+    Proc_ExecuteSql(sql);
  end;
 end;
 

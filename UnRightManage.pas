@@ -8,7 +8,8 @@ uses
   Vcl.ExtCtrls, RzPanel, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh, dxGDIPlusClasses,
   Vcl.StdCtrls, MemTableDataEh, Data.DB, Data.Win.ADODB, DataDriverEh,
-  MemTableEh, AdvGlowButton, AdvSmoothLabel;
+  MemTableEh, AdvGlowButton, AdvSmoothLabel, Vcl.ComCtrls, System.ImageList,
+  Vcl.ImgList;
 
 type
   TfrmRightManager = class(Tfrmbase_pnl)
@@ -25,21 +26,11 @@ type
     lbl_01: TLabel;
     Image4: TImage;
     DBGridEh2: TDBGridEh;
-    RzPanel12: TRzPanel;
-    RzPanel13: TRzPanel;
-    RzPanel14: TRzPanel;
-    Label5: TLabel;
-    Image5: TImage;
-    mteUser: TMemTableEh;
-    dsoUser: TDataSource;
-    dsdUser: TDataSetDriverEh;
-    adtUser: TADODataSet;
     RzPanel15: TRzPanel;
     Label6: TLabel;
     Image6: TImage;
     btnDeleteUser: TAdvGlowButton;
     AdvGlowButton1: TAdvGlowButton;
-    Grd01: TDBGridEh;
     RzPanel16: TRzPanel;
     RzPanel18: TRzPanel;
     RzPanel17: TRzPanel;
@@ -50,23 +41,7 @@ type
     btn1: TAdvGlowButton;
     btn2: TAdvGlowButton;
     DBGridEh4: TDBGridEh;
-    adtRole: TADODataSet;
-    dsdRole: TDataSetDriverEh;
-    dsoRole: TDataSource;
-    mteRole: TMemTableEh;
-    btnAddRight: TAdvGlowButton;
-    btnDeleteRight: TAdvGlowButton;
-    RzPanel8: TRzPanel;
-    RzPanel11: TRzPanel;
-    lbl_02: TLabel;
-    Image3: TImage;
-    DBGridEh3: TDBGridEh;
-    btnAddRight2: TAdvGlowButton;
-    btnDeleteRight2: TAdvGlowButton;
-    GRD1: TDBGridEh;
     advsmthlbl1: TAdvSmoothLabel;
-    adtRoleId: TAutoIncField;
-    adtRoleRoleName: TWideStringField;
     AdtFunction: TADODataSet;
     dsdFunction: TDataSetDriverEh;
     dsoFunction: TDataSource;
@@ -74,39 +49,20 @@ type
     AdtFunctionflname: TWideStringField;
     AdtFunctionIsSelect: TBooleanField;
     mteFunction: TMemTableEh;
-    adtUserRight: TADODataSet;
     dsd_UserRight: TDataSetDriverEh;
     dso_UserRight: TDataSource;
-    adtUserRightId: TAutoIncField;
-    adtUserRightUserId: TIntegerField;
-    adtUserRightFormId: TIntegerField;
     adtFormFunction: TADODataSet;
     Qry: TADOQuery;
-    adtUserRightIsSelect: TBooleanField;
-    mte_UserRight: TMemTableEh;
-    mte_UserRightId: TAutoIncField;
-    mte_UserRightUserId: TIntegerField;
-    mte_UserRightFormId: TIntegerField;
-    mte_UserRightFormName: TStringField;
-    mte_UserRightIsSelect: TBooleanField;
     adtRoleUser: TADODataSet;
     dsdRoleUser: TDataSetDriverEh;
     dsoRoleUser: TDataSource;
     adtRoleUserId: TIntegerField;
     adtRoleUserUserId: TIntegerField;
     adtRoleUserRoleId: TIntegerField;
-    Adt_UserLook: TADODataSet;
-    Adt_UserLookId: TAutoIncField;
-    Adt_UserLookPersonId: TIntegerField;
-    Adt_UserLookUserCode: TWideStringField;
-    Adt_UserLookUserName: TWideStringField;
-    Adt_UserLookPassWord: TWideStringField;
-    Adt_UserLookIsSelect: TBooleanField;
     mteRoleUser: TMemTableEh;
     mteRoleUserId: TIntegerField;
     mteRoleUserUserId: TIntegerField;
     mteRoleUserRoleId: TIntegerField;
-    mteRoleUserUserName: TStringField;
     dsdRoleRight: TDataSetDriverEh;
     mte_RoleRight: TMemTableEh;
     AutoIncField1: TAutoIncField;
@@ -120,8 +76,43 @@ type
     adtRoleRightRoleId: TIntegerField;
     adtRoleRightId: TAutoIncField;
     mte_RoleRightFormName: TStringField;
-    Adt_Person: TADODataSet;
-    dso_Person: TDataSource;
+    DBGridEh6: TDBGridEh;
+    mteUser: TMemTableEh;
+    AdtUser: TADODataSet;
+    dsoUser: TDataSource;
+    dsdUser: TDataSetDriverEh;
+    adtUserLookUp: TADODataSet;
+    mte_UserRight: TMemTableEh;
+    adtUserRight: TADODataSet;
+    adtUserRightId: TAutoIncField;
+    adtUserRightUserId: TIntegerField;
+    adtUserRightFormId: TIntegerField;
+    adtUserRightIsSelect: TBooleanField;
+    mte_UserRightId: TAutoIncField;
+    mte_UserRightUserId: TIntegerField;
+    mte_UserRightFormId: TIntegerField;
+    mte_UserRightIsSelect: TBooleanField;
+    mte_UserRightFormName: TStringField;
+    adtRole: TADODataSet;
+    mteRole: TMemTableEh;
+    dsoRole: TDataSource;
+    dsdRole: TDataSetDriverEh;
+    ImageList1: TImageList;
+    RzPanel12: TRzPanel;
+    btnAddRight: TAdvGlowButton;
+    btnDeleteRight: TAdvGlowButton;
+    btnAddRight2: TAdvGlowButton;
+    btnDeleteRight2: TAdvGlowButton;
+    RzPanel14: TRzPanel;
+    GRD1: TDBGridEh;
+    RzPanel13: TRzPanel;
+    Label2: TLabel;
+    Image2: TImage;
+    RzPanel8: TRzPanel;
+    RzPanel11: TRzPanel;
+    lbl_02: TLabel;
+    Image3: TImage;
+    DBGridEh3: TDBGridEh;
     procedure adtRoleAfterScroll(DataSet: TDataSet);
     procedure Button1Click(Sender: TObject);
     procedure mteUserAfterScroll(DataSet: TDataSet);
@@ -142,6 +133,9 @@ type
       Column: TColumnEh; DataSet: TDataSet; FieldName: string;
       Operation: TLSAutoFilterTypeEh; FilterText: string);
     procedure mteUserAfterPost(DataSet: TDataSet);
+    procedure mte_UserRightNewRecord(DataSet: TDataSet);
+    procedure DBGridEh2CellClick(Column: TColumnEh);
+    procedure mte_UserRightFormNameChange(Sender: TField);
   private
     procedure Proc_DeleteCurrentRowData(mte:TMemTableEh);
     { Private declarations }
@@ -442,6 +436,13 @@ begin
     lbl_01.Caption:='001';
 end;
 
+procedure TfrmRightManager.DBGridEh2CellClick(Column: TColumnEh);
+begin
+  inherited;
+   if mte_UserRight.RecordCount=0 then    Exit;
+
+end;
+
 procedure TfrmRightManager.Grd01Columns1DropDownBoxApplyTextFilter(
   Sender: TCustomDBGridEh; Column: TColumnEh; DataSet: TDataSet;
   FieldName: string; Operation: TLSAutoFilterTypeEh; FilterText: string);
@@ -482,10 +483,23 @@ procedure TfrmRightManager.mteUserAfterScroll(DataSet: TDataSet);
 var
   str:string;
 begin
-   str:='权限管理---【'+DataSet.FieldByName('UserName').AsString+'】权限列表';
+   str:='权限管理---【'+mteUser.FieldByName('UserName').AsString+'】权限列表';
  //  ShowMessage(str);
    lbl_01.Caption:=str;
  // RzPanel10.Refresh;
+end;
+
+procedure TfrmRightManager.mte_UserRightFormNameChange(Sender: TField);
+begin
+  inherited;
+   if mte_UserRight.FieldByName('FormId').isnull then   Exit;
+
+end;
+
+procedure TfrmRightManager.mte_UserRightNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  mte_UserRight.Cancel;
 end;
 
 end.

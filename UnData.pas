@@ -58,7 +58,8 @@ type
       //消息框
       function FunMsg(Msg,Title:string):Boolean;
 
-
+      //批量执行SQL语句
+      procedure Proc_BatchExecuteSql(sql: string);
  end;
 
 var
@@ -73,7 +74,31 @@ uses UnLocate_ColumnParameter;
 {$R *.dfm}
 
 
+procedure Tdm_DaTa.Proc_BatchExecuteSql(sql: string);
+var
+  adoconn:Tadoconnection;
+  adocommand:tadocommand;
+begin
+ try
+  adoconn := TADOConnection.Create(self);
+  adoconn.ConnectionString := dm_Data.adoconn.ConnectionString;
+  adoconn.LoginPrompt := False;
+  adoconn.Connected := True;
+  adoconn.BeginTrans;
+  adocommand := TADOCommand.Create(self);
+  adocommand.Connection := adoconn;
+  adocommand.CommandText := sql;
+  adocommand.Execute;
+  adoconn.CommitTrans;
+  FreeAndNil(adoconn);
+  FreeAndNil(adocommand);
+ except
+  adoconn.RollbackTrans
 
+
+
+ end;
+end;
 
 
 procedure Tdm_DaTa.GrdParamter(Grd: TDBGridEh);
@@ -132,23 +157,30 @@ begin
    end;
 
      mte.First;
+     var  i:Integer;
    if chk.Checked=True then
     begin
-        while not mte.eof do
+
+       for I := 1 to mte.RecordCount do
+
         begin
            mte.edit;
            mte.FieldByName('IsSelect').AsBoolean:=True;
            mte.Post;
+           if i<mte.RecordCount then
+
            mte.Next;
         end;
     end;
       if chk.Checked=false then
     begin
-        while not mte.eof do
+        for I := 1 to mte.RecordCount do
+
         begin
            mte.edit;
            mte.FieldByName('IsSelect').AsBoolean:=False;
            mte.Post;
+            if i<mte.RecordCount then
            mte.Next;
         end;
     end;

@@ -6,8 +6,6 @@ inherited FrmSalesOrderReport: TFrmSalesOrderReport
   Font.Height = -11
   Font.Name = 'Tahoma'
   WindowState = wsMaximized
-  OnCreate = FormCreate
-  ExplicitLeft = -217
   ExplicitWidth = 1056
   ExplicitHeight = 306
   PixelsPerInch = 96

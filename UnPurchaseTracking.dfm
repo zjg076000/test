@@ -6,13 +6,14 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
   Font.Height = -11
   Font.Name = 'Tahoma'
   WindowState = wsMaximized
+  ExplicitLeft = -545
   ExplicitWidth = 1663
   ExplicitHeight = 532
   PixelsPerInch = 96
   TextHeight = 13
   inherited RzPanel1: TRzPanel
     Width = 1647
-    ExplicitWidth = 1372
+    ExplicitWidth = 1647
     inherited RzToolbarButton1: TRzToolbarButton
       Tag = 3003
       Left = 1584
@@ -87,6 +88,20 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       ExplicitLeft = 736
       ExplicitTop = -7
     end
+    object RzToolbarButton4: TRzToolbarButton
+      Tag = 9001
+      Left = 1226
+      Top = 1
+      Width = 15
+      Height = 26
+      Align = alRight
+      Caption = '|'
+      NumGlyphs = 2
+      OnClick = RzToolbarButton1Click
+      HotNumGlyphs = 0
+      ExplicitLeft = 1244
+      ExplicitTop = -7
+    end
     object btn_tel: TAdvGlowButton
       Left = 1475
       Top = 1
@@ -147,7 +162,6 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       Appearance.GradientDown = ggVertical
       Appearance.GradientMirrorDown = ggVertical
       Appearance.GradientChecked = ggVertical
-      ExplicitLeft = 1200
     end
     object btn_ServiceRight: TAdvGlowButton
       Tag = 3002
@@ -218,7 +232,6 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       Appearance.ColorMirrorCheckedTo = 16768988
       Appearance.ColorMirrorDisabled = 11974326
       Appearance.ColorMirrorDisabledTo = 15921906
-      ExplicitLeft = 1083
     end
     object btnSaveStyle: TAdvGlowButton
       Tag = 3002
@@ -284,7 +297,73 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       Appearance.ColorMirrorCheckedTo = 16768988
       Appearance.ColorMirrorDisabled = 11974326
       Appearance.ColorMirrorDisabledTo = 15921906
-      ExplicitLeft = 966
+    end
+    object btn_UpdataData: TAdvGlowButton
+      Tag = 3002
+      Left = 1120
+      Top = 1
+      Width = 106
+      Height = 26
+      Align = alRight
+      Caption = #26356#26032#25968#25454
+      Font.Charset = GB2312_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = #23435#20307
+      Font.Style = []
+      FocusType = ftHot
+      HotPicture.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000012449444154384FAD92B155C3301086BF4B114AA20DC406CE0619C11B
+        E016A7206CC00631854DEB6C0013E011C2046802E41252209E44141C62C3E325
+        D7DEE9FFEFFE4FC2912547BEA75740973643B80437C5498BF082D0002B73A54C
+        D77427A09776121A639E804746D47138F4C6A4080B1C8599AB3A8A04017D6F35
+        1F2C1012A030B97AE83B2D089DD1E0C8CC5CADFDCCF706D56B0BE2DD0DC2DDCF
+        55A3A02E6D820493D9BE40698BED501DD58702D6956D78273537AA3D1D057F9F
+        57FC2FD64E06766D72E543FCB57465531C9348A22B5023019DE77D508194C3E3
+        F3B8CF4DAE2EF643FC42D930623648C0BBC32D0EC386EC20C48008FC1F58B261
+        1533D9BA5F0353842CACF746DB4B61FB59FC500A2EC1894378F6C2265711F5EE
+        C4D361FC2BFDA1FE27BE6775118DDA12CD0000000049454E44AE426082}
+      NotesFont.Charset = DEFAULT_CHARSET
+      NotesFont.Color = clWindowText
+      NotesFont.Height = -11
+      NotesFont.Name = 'Tahoma'
+      NotesFont.Style = []
+      ParentFont = False
+      Picture.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000015149444154384FA593BD51C3401085DF42823313EA1CE00E2C0266E4
+        08B903548129C11D6855017480E940548088A4CC2AC109D20C0990304EF0634E
+        B28DFF6486F1A577FBBDB76FF704471E39B21E7B019E96B7008722F02B0132A7
+        9CDC67A1F3B82DB803F0A2622CC090C00BC0A42E105F806B12C90CAD20D7F38F
+        25680770A56FEE29BEDB993A8BE2FAA9A7A50F610C6292A919EC006ADB483275
+        A64DB9D837227C2065B014A81C785A7605F3092049AA2638146C3F2AA6B442A1
+        B18275885E5424B6C73A3004A99AB809D28F8A98403B0B4D15F02A032F7ACDC5
+        3A08CDA8B1588B1104778BFBA73434372B802583BC48B57379A805EB16803B63
+        AB6BA7F1EB404B5F84CFEB01ED03D579D15DB6B931C62A0BB2479C047BC7084C
+        B7A7B40170F5BD7D265F89407A20628AE48B4DF4ED56128CB2B0A3EBCE9A5759
+        E6230B22F0092007659CA933FE7395FFFBB98EFE8D3F215B9011CE4E7CA70000
+        000049454E44AE426082}
+      Transparent = True
+      TabOrder = 3
+      OnClick = btn_UpdataDataClick
+      Appearance.ColorChecked = 16111818
+      Appearance.ColorCheckedTo = 16367008
+      Appearance.ColorDisabled = 15921906
+      Appearance.ColorDisabledTo = 15921906
+      Appearance.ColorDown = 16111818
+      Appearance.ColorDownTo = 16367008
+      Appearance.ColorHot = 16117985
+      Appearance.ColorHotTo = 16372402
+      Appearance.ColorMirrorHot = 16107693
+      Appearance.ColorMirrorHotTo = 16775412
+      Appearance.ColorMirrorDown = 16102556
+      Appearance.ColorMirrorDownTo = 16768988
+      Appearance.ColorMirrorChecked = 16102556
+      Appearance.ColorMirrorCheckedTo = 16768988
+      Appearance.ColorMirrorDisabled = 11974326
+      Appearance.ColorMirrorDisabledTo = 15921906
+      ExplicitLeft = 1119
     end
   end
   object RzPanel3: TRzPanel
@@ -296,7 +375,6 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
     BorderOuter = fsFlat
     BorderSides = [sdBottom]
     TabOrder = 1
-    ExplicitWidth = 1372
     object Label1: TLabel
       Left = 54
       Top = 9
@@ -321,7 +399,6 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       Align = alLeft
       BorderOuter = fsNone
       TabOrder = 0
-      ExplicitLeft = 1
       object Label28: TLabel
         Left = 21
         Top = 10
@@ -336,7 +413,7 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         ParentFont = False
       end
       object Label2: TLabel
-        Left = 159
+        Left = 154
         Top = 10
         Width = 12
         Height = 12
@@ -349,14 +426,14 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         ParentFont = False
       end
       object Label4: TLabel
-        Left = 355
+        Left = 338
         Top = 10
         Width = 24
         Height = 13
         Caption = #40664#35748
       end
       object Label5: TLabel
-        Left = 425
+        Left = 408
         Top = 8
         Width = 12
         Height = 13
@@ -375,7 +452,7 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         TabOrder = 0
       end
       object dateend: TDateTimePicker
-        Left = 183
+        Left = 178
         Top = 6
         Width = 87
         Height = 21
@@ -387,7 +464,7 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         TabOrder = 1
       end
       object btn_OrderNum_Locate: TAdvGlowButton
-        Left = 280
+        Left = 271
         Top = 6
         Width = 60
         Height = 21
@@ -441,9 +518,9 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         Appearance.ColorMirrorDisabledTo = 15921906
       end
       object sped_month: TSpinEdit
-        Left = 385
+        Left = 368
         Top = 6
-        Width = 35
+        Width = 38
         Height = 22
         MaxValue = 0
         MinValue = 0
@@ -451,7 +528,7 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
         Value = -2
       end
       object btn_Month: TAdvGlowButton
-        Left = 443
+        Left = 426
         Top = 5
         Width = 53
         Height = 21
@@ -507,7 +584,7 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       end
     end
     object chk_select: TCheckBox
-      Left = 502
+      Left = 482
       Top = 7
       Width = 48
       Height = 17
@@ -524,7 +601,6 @@ inherited FrmPurchaseTracking: TFrmPurchaseTracking
       BorderOuter = fsFlat
       BorderSides = [sdLeft]
       TabOrder = 2
-      ExplicitLeft = 530
       object Label3: TLabel
         Left = 15
         Top = 10

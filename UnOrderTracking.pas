@@ -41,10 +41,6 @@ type
     adtCustProdType: TWideStringField;
     adtProductType: TWideStringField;
     adtSpecifications: TWideStringField;
-    adtAmount: TIntegerField;
-    adtPrice: TBCDField;
-    adtAmountMoney: TBCDField;
-    adtShippedNum: TIntegerField;
     adtDeliveryDate: TDateTimeField;
     adtEstimateDate: TDateTimeField;
     adtShippingDate: TDateTimeField;
@@ -65,10 +61,6 @@ type
     mteCustProdType: TWideStringField;
     mteProductType: TWideStringField;
     mteSpecifications: TWideStringField;
-    mteAmount: TIntegerField;
-    mtePrice: TBCDField;
-    mteAmountMoney: TBCDField;
-    mteShippedNum: TIntegerField;
     mteDeliveryDate: TDateTimeField;
     mteEstimateDate: TDateTimeField;
     mteShippingDate: TDateTimeField;
@@ -109,6 +101,20 @@ type
     Switch_01: TToggleSwitch;
     btn_OrderState: TAdvGlowButton;
     chkUpdate: TCheckBox;
+    qry_erp2: TADOQuery;
+    adtAmount: TFMTBCDField;
+    adtPrice: TFMTBCDField;
+    adtAmountMoney: TBCDField;
+    adtShippedNum: TFMTBCDField;
+    adtCREATE_DATE: TWideStringField;
+    adtAuditing: TWideStringField;
+    mteAmount: TFMTBCDField;
+    mtePrice: TFMTBCDField;
+    mteAmountMoney: TBCDField;
+    mteShippedNum: TFMTBCDField;
+    mteCREATE_DATE: TWideStringField;
+    mteAuditing: TWideStringField;
+    btn_UpdataData: TAdvGlowButton;
     procedure chk_locateClick(Sender: TObject);
     procedure btn_GrdColClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -128,6 +134,7 @@ type
     procedure chk_selectClick(Sender: TObject);
     procedure btn_MonthClick(Sender: TObject);
     procedure btn_OrderStateClick(Sender: TObject);
+    procedure btn_UpdataDataClick(Sender: TObject);
   private
 
     str_datebegin,str_dateend:string;
@@ -135,7 +142,9 @@ type
 
     procedure OrderNumInput;
     procedure Proc_LocateData;     //产生订单跟踪表
-    procedure UpdateOutData;
+    procedure UpdateOutData;      //根据出货记录更新订单状态
+    procedure UpdateAuditingOrderData;  //更新未审核的订单 更改数据的数据
+
     procedure Proc_LocateOutOrderDate(var OrderType: string; var OrderNum: string; var ProductType: string; var Amount: Integer; var EstimateDate: string; var ShippingDate: string);     //根据销货单统计延时记录
   public
     { Public declarations }
@@ -347,6 +356,14 @@ begin
   dm_data.DbGridEhToExcel(Grd);
 end;
 
+procedure TFrmOrderTracking.btn_UpdataDataClick(Sender: TObject);
+begin
+    UpdateOutData;
+    UpdateAuditingOrderData;
+    Proc_LocateData;
+
+end;
+
 procedure TFrmOrderTracking.chk_locateClick(Sender: TObject);
 begin
  // inherited;
@@ -363,13 +380,13 @@ procedure TFrmOrderTracking.FormCreate(Sender: TObject);
 begin
   OrderNumInput;
 
-  dm_DaTa.RestoreGridEhStyle(GRD,self.Caption);
+ dm_DaTa.RestoreGridEhStyle(GRD,self.Caption);
 
   VarMonth:=StrToInt(dm_DaTa.ReadIni('查询参数','月份'));
   sped_month.Value:=VarMonth;
   datebegin.Date:=IncMonth(now,VarMonth);
   dateend.Date:=now;
-  UpdateOutData;
+
   Proc_LocateData;
 
 end;
@@ -396,6 +413,10 @@ begin
    　AFont.color := clRed;
   if mte.FieldByName('OrderState').AsString = '未发货' then
    　AFont.color := clBlack;
+  if mte.FieldByName('OrderState').AsString = '结束发货' then
+   　AFont.color := clFuchsia;
+
+
   if mte.FieldByName('OrderState').AsString = '部分发货' then
    begin
    　AFont.color :=clWebBlue;
@@ -417,77 +438,109 @@ begin
 
 end;
 
+{----------------------------------------数据同步------------------------------------
+   1. 所有的订单数据插入到跟踪库
+   * 2. 更新ERP中一个标志字段   *
+}
+
 procedure TFrmOrderTracking.OrderNumInput;
 var
-  MaxOrderNum,sql:string;
-  OrderType,OrderDate,OrderNum,CustOrderNum,CustCode,CustProdType,ProductType,OrderNumNote,
+  CREATE_DATE,MaxOrderNum,sql:string;
+  OrderType,OrderDate,OrderNum,CustOrderNum,CustCode,CustProdType,ProductType,OrderNumNote,Auditing,
   Amount,ShippedNum,DeliveryDate,EstimateDate,Note,SaleMan,Specifications,Price,AmountMoney,OrderState,Currency:string;
 begin
-   psql:='select max(OrderNum) ordernum from  Pd_OrderTracking ';
-
-   dm_DaTa.QuseryData(qry,psql);
-   //查询近30天已经审核的的订单数据
+    psql:='select max(CREATE_DATE) CREATE_DATE from  Pd_OrderTracking ';
+    dm_DaTa.QuseryData(qry,psql);
+    CREATE_DATE:=qry.FieldByName('CREATE_DATE').AsString;
+   //查询没有同步的ERP的的订单数据
    psql:='select a.TC001,a.TC002,a.TC003,a.TC004,a.TC006,a.TC008,a.TC012,a.TCI01,a.TC052,'
-        +'b.TD005,b.TD006,b.TD008,b.TD009,b.TD013,b.TD014,b.TD020,b.TD011,b.TD012 '
-        +' from  COPTC a inner   JOIN  COPTD b  ON a.TC002=b.TD002 and a.TC001=b.TD001  '
-        +' AND a.TC027=''Y'' ';
-        // AND  a.TC003>CONVERT(varchar(100), GETDATE()-30, 112) ';
-      MaxOrderNum:=qry.FieldByName('ordernum').AsString;
-   if MaxOrderNum='' then
-       psql:=psql
-   else
-      psql:=psql+' AND  a.TC002>'''+MaxOrderNum+'''';
+        +'b.TD005,b.TD006,b.TD008,b.TD009,b.TD013,b.TD014,b.TD020,b.TD011,b.TD012,b.CREATE_DATE,b.TD016,b.TD021 '
+        +' from  COPTC a  Right   JOIN  COPTD b  ON (b.TD002=a.TC002 and b.TD001=a.TC001 ) '
+      //  +' AND  b.TD021=''Y''';
+       +' where   b.CREATE_DATE>'''+CREATE_DATE+'''  order by  b.CREATE_DATE ';
+
 
     dm_DaTa.QuseryData(qry_erp,Psql);
-    while not qry_erp.Eof  do
+    qry_erp.first;
+    var i:integer;
+    for I := 1 to qry_erp.recordcount do
     begin
-
+     OrderDate:=qry_erp.FieldByName('TC003').AsString;  //订单日期
      OrderType:=qry_erp.FieldByName('TC001').AsString;  //订单类型
      OrderNum:=qry_erp.FieldByName('TC002').AsString;   //订单号
-     OrderDate:=qry_erp.FieldByName('TC003').AsString;  //订单日期
      CustOrderNum:=qry_erp.FieldByName('TC012').AsString; //客户订单号
-     CustCode:=qry_erp.FieldByName('TC004').AsString;     //客户编号
-     CustProdType:=qry_erp.FieldByName('TD014').AsString; //客户类型
+       CustCode:=qry_erp.FieldByName('TC004').AsString;     //客户编号
+       DeliveryDate:=qry_erp.FieldByName('TCI01').AsString; //订单要求发货日期
+       SaleMan:=qry_erp.FieldByName('TC006').AsString;       //销售人员
+       Currency:=qry_erp.FieldByName('TC008').AsString;      //币种
+       OrderNumNote:=qry_erp.FieldByName('TC052').AsString;   //订单备注
+
+    // end;
+
      ProductType:=qry_erp.FieldByName('TD005').AsString;  //公司型号
-     Amount:=qry_erp.FieldByName('TD008').AsString; //产品数量
-    // DeliveryDate:=qry_erp.FieldByName('TCI01').AsString; //订单要求发货日期
+     if qry_erp.FieldByName('TD008').asfloat>0  then
+       Amount:=qry_erp.FieldByName('TD008').AsString
+     else
+       Amount:='0';
+       //产品数量
+     CustProdType:=qry_erp.FieldByName('TD014').AsString; //客户类型
+
      //EstimateDate
      DeliveryDate:=qry_erp.FieldByName('TD013').AsString; //预计发货日期
      Note:=qry_erp.FieldByName('TD020').AsString;        //产品备注
      Specifications:=qry_erp.FieldByName('TD006').AsString; //产品规格
-     Price:=FloatToStr(qry_erp.FieldByName('TD011').Asfloat); //产品规格
-     AmountMoney:=FloatToStr(qry_erp.FieldByName('TD012').AsFloat); //产品规格
+
+     if qry_erp.FieldByName('TD011').Asfloat>0 then
+
+     Price:=FloatToStr(qry_erp.FieldByName('TD011').Asfloat) //产品规格
+    else
+     Price:='0.00';
+     if   qry_erp.FieldByName('TD012').AsFloat>0 then
+     AmountMoney:=FloatToStr(qry_erp.FieldByName('TD012').AsFloat) //产品金额
+     else
+      AmountMoney:='0';
      ShippedNum:=qry_erp.FieldByName('TD009').AsString;//交货数量
 
-     SaleMan:=qry_erp.FieldByName('TC006').AsString;       //销售人员
-     Currency:=qry_erp.FieldByName('TC008').AsString;      //币种
-     OrderNumNote:=qry_erp.FieldByName('TC052').AsString;   //订单备注
+
+     CREATE_DATE:=qry_erp.FieldByName('CREATE_DATE').AsString;  //插入日期
+
+
+     Auditing:=qry_erp.FieldByName('TD021').AsString ;     //审核状态
+
      OrderState:='未发货';
 
+    {--------- 生成同步ERP数据的插入语句------------------------------------------------------}
+     var  str_field, str_value:string;
+        str_field:='CREATE_DATE,OrderType,OrderNum, OrderDate,  '
+                 +'CustOrderNum,OrderNumNote,Auditing,'
+                  +'CustCode,CustProdType,ProductType,'
+                  +'Amount,DeliveryDate,Note,'
+                  +'SaleMan,Specifications,Price,'
+                  +'AmountMoney,ShippedNum,OrderState,'
+                  +'Currency' ;
+        str_value:=''''+CREATE_DATE+''','''+OrderType+''','''+OrderNum+''','''+OrderDate+''','
+                  +''''+CustOrderNum+''','''+OrderNumNote+''','''+Auditing+''','
+                  +''''+CustCode+''','''+CustProdType+''','''+ProductType+''','
+                  +Amount+','''+DeliveryDate+''','''+Note+''','
+                  +''''+SaleMan+''','''+Specifications+''','+Price+','
+                  +AmountMoney+','+ShippedNum+','''+OrderState+''','
+                  +''''+Currency+'''';
 
 
-    // if  StrToInt(ShippedNum) =strtoint(Amount) then  OrderState:='已发货';
-   //  if  (StrToInt(ShippedNum) <StrToInt(Amount)) and (StrToInt(ShippedNum)>0) then  OrderState:='部分发货';
+      sql:=sql+' insert into Pd_OrderTracking('+str_field+') VALUES('+str_value+')';
 
 
-     //生成插入SQL语句
-     sql:=sql+' insert into Pd_OrderTracking(OrderType,OrderDate,OrderNum,CustOrderNum,OrderNumNote,'
-          +'CustCode,CustProdType,ProductType,Amount,DeliveryDate,Note,SaleMan,Specifications,Price,AmountMoney,ShippedNum,OrderState,Currency)'
-          +'  values('''+OrderType+''','''+OrderDate+''','''+OrderNum+''','''+CustOrderNum+''','''+OrderNumNote+''','
-          +''''+CustCode+''','''+CustProdType+''','''+ProductType+''','+Amount+','''+DeliveryDate+''','
-          +''''+Note+''','''+SaleMan+''','''+Specifications+''','+Price+','+AmountMoney+','+ShippedNum+','''+OrderState+''','''+Currency+''')';
-
-     qry_erp.Next;
+     if i<qry_erp.recordcount then
+       qry_erp.Next;
 
     end;
- if sql>'' then
- begin
-  dm_Data.adoconn.BeginTrans;
-  dm_Data.ADOCommand.CommandText:=sql;
-//  showmessage(SqlStr);
-  dm_Data.ADOCommand.Execute();
-  dm_Data.adoconn.CommitTrans;
- end;
+
+   if sql>''  then
+       begin
+         dm_DaTa.Proc_BatchExecuteSql(sql);
+
+       end;
+
 end;
 
 procedure TFrmOrderTracking.Proc_LocateData;
@@ -524,6 +577,60 @@ begin
 //  adt.Requery;
   mte.Close;
   mte.Open;
+end;
+  { -------------------更改未审核订单数据 ------------
+    1. 查询订单跟踪表中未审核(N)的订单品名 的产品
+    2. 查询 ERP的订单数据中是否已经审核  如果审核 把ERP的数量  金额 单价  更新到 订单跟踪表中
+    3. 同时更改跟踪表中改产品的审核标志Y
+      }
+procedure TFrmOrderTracking.UpdateAuditingOrderData;
+begin
+   var  sql:string;
+   psql:='select * From  Pd_OrderTracking where Auditing=''N''';
+   dm_DaTa.QuseryData(qry,psql);
+   if qry.RecordCount>0 then
+   begin
+     {---------取得产品的订单号 订单类型   产品型号  ----------}
+     var  OrderType,OrderNum,ProductType,Erp_num,Erp_Price,Erp_Money:string ;
+     var  i:Integer;
+      qry.first;
+      for I := 1 to qry.RecordCount do
+      begin
+       OrderType:=qry.FieldByName('OrderType').AsString;
+       OrderNum:=qry.FieldByName('OrderNum').AsString;
+       ProductType:=qry.FieldByName('ProductType').AsString;
+        {--------------查询Erp中是否有改 --------------}
+         psql:='select * From  COPTD where TD021=''Y'' and TD001='''+OrderType+''''
+               +' and TD002='''+OrderNum+'''  and  TD005='''+ProductType+'''';
+         dm_DaTa.QuseryData(qry_erp,psql);
+         if  qry_erp.recordcount>0  then
+          begin
+             Erp_num:=qry_erp.fieldbyname('TD008').asstring;     //数量
+             Erp_Price:=qry_erp.fieldbyname('TD011').asstring;  //单价
+             Erp_Money:=qry_erp.fieldbyname('TD012').asstring;   //金额
+
+             sql:=sql+'  update Pd_OrderTracking set Amount='+Erp_num+','
+                 +'Price='+Erp_Price+','+'AmountMoney='+Erp_Money+','
+                 +'Auditing=''Y'' where  OrderType='''+OrderType+''' and '
+                 +' OrderNum='''+OrderNum+''' and  ProductType='''+ProductType+'''';
+
+
+          end;
+
+
+
+
+
+       qry.next;
+
+      end;
+   end;
+
+  if sql>'' then
+ begin
+   dm_DaTa.Proc_BatchExecuteSql(sql);
+ end;
+
 end;
 
 procedure TFrmOrderTracking.UpdateOutData;
@@ -565,6 +672,24 @@ begin
       //如果出货记录中没有对应的单号
       if ShippingDate='' then
       begin
+
+       {-----------------------手工结束发货-----非正常关闭订单 begin---------------------
+           //非正常结束订单 :小写 y          正常结束订单 :大写 Y
+
+       }
+
+           psql:='select  * from   COPTD  where  TD001='''+OrderType+''' And  TD002='''+OrderNum+'''  '
+            +' and TD005='''+ProductType+''' and  TD016=''y'' ';
+          dm_Data.QuseryData(qry_erp2, psql);
+
+          if  qry_erp2.RecordCount>0 then
+           begin
+              OrderState:='结束发货';
+              sql:=sql+' Update Pd_OrderTracking set OrderState='''+OrderState+''''
+                     +'  where OrderNum='''+OrderNum+''' and OrderType='''+OrderType+''' '
+                   +' and ProductType='''+ProductType+'''';
+           end;
+          {-----------------------手工结束发货-----非正常关闭订单 end---------------------}
           qry.next;
           continue;
       end;
@@ -613,7 +738,20 @@ begin
         if Amount>qry_erp.fieldbyname('num').asinteger then
         BEGIN
            //根据订单型号结束订单
-                OrderState:='部分发货';
+            OrderState:='部分发货';
+
+
+           {---------发货了一部分 ，手动结束发货的情况- begin-----------}
+
+           psql:='select  * from   COPTD  where  TD001='''+OrderType+''' And  TD002='''+OrderNum+'''  '
+            +' and TD005='''+ProductType+''' and  TD016=''y'' ';
+          dm_Data.QuseryData(qry_erp2, psql);
+          if  qry_erp2.RecordCount>0 then
+           begin
+              OrderState:='结束发货';
+           end;
+           {---------发货了一部分 ，手动结束发货的情况- End-----------}
+
 
 
             sql:=sql+' Update Pd_OrderTracking set ShippedNum='+ShippedNum
@@ -635,22 +773,21 @@ begin
                    +' and ProductType='''+ProductType+'''';
 
          //  ShowMessage(sql);
-        END
+        END;
+
+
          end;
 
       qry.next;
 
        end;
 
- // end;
+
+
 
   if sql>'' then
  begin
-  dm_Data.adoconn.BeginTrans;
-  dm_Data.ADOCommand.CommandText:=sql;
-//  showmessage(SqlStr);
-  dm_Data.ADOCommand.Execute();
-  dm_Data.adoconn.CommitTrans;
+   dm_DaTa.Proc_BatchExecuteSql(sql);
  end;
 
 

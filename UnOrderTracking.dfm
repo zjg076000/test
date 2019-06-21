@@ -12,7 +12,7 @@ inherited FrmOrderTracking: TFrmOrderTracking
   TextHeight = 13
   inherited RzPanel1: TRzPanel
     Width = 1491
-    ExplicitWidth = 1370
+    ExplicitWidth = 1491
     inherited RzToolbarButton1: TRzToolbarButton
       Tag = 3001
       Left = 1428
@@ -163,7 +163,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
       Appearance.GradientDown = ggVertical
       Appearance.GradientMirrorDown = ggVertical
       Appearance.GradientChecked = ggVertical
-      ExplicitLeft = 1198
     end
     object AdvGlowButton8: TAdvGlowButton
       Tag = 3002
@@ -237,7 +236,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
       Appearance.ColorMirrorCheckedTo = 16768988
       Appearance.ColorMirrorDisabled = 11974326
       Appearance.ColorMirrorDisabledTo = 15921906
-      ExplicitLeft = 964
     end
     object btnSaveStyle: TAdvGlowButton
       Tag = 3002
@@ -303,7 +301,72 @@ inherited FrmOrderTracking: TFrmOrderTracking
       Appearance.ColorMirrorCheckedTo = 16768988
       Appearance.ColorMirrorDisabled = 11974326
       Appearance.ColorMirrorDisabledTo = 15921906
-      ExplicitLeft = 1081
+    end
+    object btn_UpdataData: TAdvGlowButton
+      Tag = 3002
+      Left = 952
+      Top = 1
+      Width = 118
+      Height = 26
+      Align = alRight
+      Caption = #26356#26032#25968#25454
+      Font.Charset = GB2312_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = #23435#20307
+      Font.Style = []
+      FocusType = ftHot
+      HotPicture.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000012449444154384FAD92B155C3301086BF4B114AA20DC406CE0619C11B
+        E016A7206CC00631854DEB6C0013E011C2046802E41252209E44141C62C3E325
+        D7DEE9FFEFFE4FC2912547BEA75740973643B80437C5498BF082D0002B73A54C
+        D77427A09776121A639E804746D47138F4C6A4080B1C8599AB3A8A04017D6F35
+        1F2C1012A030B97AE83B2D089DD1E0C8CC5CADFDCCF706D56B0BE2DD0DC2DDCF
+        55A3A02E6D820493D9BE40698BED501DD58702D6956D78273537AA3D1D057F9F
+        57FC2FD64E06766D72E543FCB57465531C9348A22B5023019DE77D508194C3E3
+        F3B8CF4DAE2EF643FC42D930623648C0BBC32D0EC386EC20C48008FC1F58B261
+        1533D9BA5F0353842CACF746DB4B61FB59FC500A2EC1894378F6C2265711F5EE
+        C4D361FC2BFDA1FE27BE6775118DDA12CD0000000049454E44AE426082}
+      NotesFont.Charset = DEFAULT_CHARSET
+      NotesFont.Color = clWindowText
+      NotesFont.Height = -11
+      NotesFont.Name = 'Tahoma'
+      NotesFont.Style = []
+      ParentFont = False
+      Picture.Data = {
+        89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+        610000015149444154384FA593BD51C3401085DF42823313EA1CE00E2C0266E4
+        08B903548129C11D6855017480E940548088A4CC2AC109D20C0990304EF0634E
+        B28DFF6486F1A577FBBDB76FF704471E39B21E7B019E96B7008722F02B0132A7
+        9CDC67A1F3B82DB803F0A2622CC090C00BC0A42E105F806B12C90CAD20D7F38F
+        25680770A56FEE29BEDB993A8BE2FAA9A7A50F610C6292A919EC006ADB483275
+        A64DB9D837227C2065B014A81C785A7605F3092049AA2638146C3F2AA6B442A1
+        B18275885E5424B6C73A3004A99AB809D28F8A98403B0B4D15F02A032F7ACDC5
+        3A08CDA8B1588B1104778BFBA73434372B802583BC48B57379A805EB16803B63
+        AB6BA7F1EB404B5F84CFEB01ED03D579D15DB6B931C62A0BB2479C047BC7084C
+        B7A7B40170F5BD7D265F89407A20628AE48B4DF4ED56128CB2B0A3EBCE9A5759
+        E6230B22F0092007659CA933FE7395FFFBB98EFE8D3F215B9011CE4E7CA70000
+        000049454E44AE426082}
+      Transparent = True
+      TabOrder = 3
+      OnClick = btn_UpdataDataClick
+      Appearance.ColorChecked = 16111818
+      Appearance.ColorCheckedTo = 16367008
+      Appearance.ColorDisabled = 15921906
+      Appearance.ColorDisabledTo = 15921906
+      Appearance.ColorDown = 16111818
+      Appearance.ColorDownTo = 16367008
+      Appearance.ColorHot = 16117985
+      Appearance.ColorHotTo = 16372402
+      Appearance.ColorMirrorHot = 16107693
+      Appearance.ColorMirrorHotTo = 16775412
+      Appearance.ColorMirrorDown = 16102556
+      Appearance.ColorMirrorDownTo = 16768988
+      Appearance.ColorMirrorChecked = 16102556
+      Appearance.ColorMirrorCheckedTo = 16768988
+      Appearance.ColorMirrorDisabled = 11974326
+      Appearance.ColorMirrorDisabledTo = 15921906
     end
   end
   object RzPanel3: TRzPanel
@@ -315,7 +378,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
     BorderOuter = fsFlat
     BorderSides = [sdBottom]
     TabOrder = 1
-    ExplicitWidth = 1370
     object Label1: TLabel
       Left = 54
       Top = 9
@@ -542,7 +604,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
       BorderOuter = fsFlat
       BorderSides = [sdLeft]
       TabOrder = 2
-      ExplicitLeft = 528
       object Label3: TLabel
         Left = 15
         Top = 10
@@ -1231,6 +1292,7 @@ inherited FrmOrderTracking: TFrmOrderTracking
     end
   end
   object adt: TADODataSet
+    Active = True
     Connection = dm_DaTa.adoconn
     CursorType = ctStatic
     CommandText = 'select * from  Pd_OrderTracking '
@@ -1270,21 +1332,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
     object adtSpecifications: TWideStringField
       FieldName = 'Specifications'
       Size = 200
-    end
-    object adtAmount: TIntegerField
-      FieldName = 'Amount'
-    end
-    object adtPrice: TBCDField
-      FieldName = 'Price'
-      Precision = 18
-    end
-    object adtAmountMoney: TBCDField
-      FieldName = 'AmountMoney'
-      Precision = 18
-      Size = 2
-    end
-    object adtShippedNum: TIntegerField
-      FieldName = 'ShippedNum'
     end
     object adtDeliveryDate: TDateTimeField
       FieldName = 'DeliveryDate'
@@ -1333,6 +1380,33 @@ inherited FrmOrderTracking: TFrmOrderTracking
       FieldName = 'ChangeDueDate'
       Size = 50
     end
+    object adtAmount: TFMTBCDField
+      FieldName = 'Amount'
+      Precision = 16
+      Size = 6
+    end
+    object adtPrice: TFMTBCDField
+      FieldName = 'Price'
+      Precision = 17
+    end
+    object adtAmountMoney: TBCDField
+      FieldName = 'AmountMoney'
+      Precision = 18
+      Size = 2
+    end
+    object adtShippedNum: TFMTBCDField
+      FieldName = 'ShippedNum'
+      Precision = 16
+      Size = 6
+    end
+    object adtCREATE_DATE: TWideStringField
+      FieldName = 'CREATE_DATE'
+      Size = 17
+    end
+    object adtAuditing: TWideStringField
+      FieldName = 'Auditing'
+      Size = 2
+    end
   end
   object dsd: TDataSetDriverEh
     ProviderDataSet = adt
@@ -1345,6 +1419,7 @@ inherited FrmOrderTracking: TFrmOrderTracking
     Top = 137
   end
   object mte: TMemTableEh
+    Active = True
     Params = <>
     DataDriver = dsd
     Left = 272
@@ -1380,26 +1455,6 @@ inherited FrmOrderTracking: TFrmOrderTracking
     object mteSpecifications: TWideStringField
       FieldName = 'Specifications'
       Size = 200
-    end
-    object mteAmount: TIntegerField
-      FieldName = 'Amount'
-    end
-    object mtePrice: TBCDField
-      Alignment = taCenter
-      FieldName = 'Price'
-      DisplayFormat = '#0.00'
-      Precision = 18
-      Size = 0
-    end
-    object mteAmountMoney: TBCDField
-      Alignment = taCenter
-      FieldName = 'AmountMoney'
-      DisplayFormat = '#0.00'
-      Precision = 18
-      Size = 0
-    end
-    object mteShippedNum: TIntegerField
-      FieldName = 'ShippedNum'
     end
     object mteDeliveryDate: TDateTimeField
       FieldName = 'DeliveryDate'
@@ -1454,6 +1509,33 @@ inherited FrmOrderTracking: TFrmOrderTracking
       FieldName = 'ChangeDueDate'
       Size = 50
     end
+    object mteAmount: TFMTBCDField
+      FieldName = 'Amount'
+      Precision = 16
+      Size = 6
+    end
+    object mtePrice: TFMTBCDField
+      FieldName = 'Price'
+      Precision = 17
+    end
+    object mteAmountMoney: TBCDField
+      FieldName = 'AmountMoney'
+      Precision = 18
+      Size = 2
+    end
+    object mteShippedNum: TFMTBCDField
+      FieldName = 'ShippedNum'
+      Precision = 16
+      Size = 6
+    end
+    object mteCREATE_DATE: TWideStringField
+      FieldName = 'CREATE_DATE'
+      Size = 17
+    end
+    object mteAuditing: TWideStringField
+      FieldName = 'Auditing'
+      Size = 2
+    end
   end
   object qry: TADOQuery
     Connection = dm_DaTa.adoconn
@@ -1466,5 +1548,11 @@ inherited FrmOrderTracking: TFrmOrderTracking
     Parameters = <>
     Left = 360
     Top = 152
+  end
+  object qry_erp2: TADOQuery
+    Connection = dm_DaTa.adoerp
+    Parameters = <>
+    Left = 368
+    Top = 256
   end
 end
